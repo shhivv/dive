@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 jwalk = "0.6.0"
 colored = "2"
+regex = "1"
+lazy_static = "1.4.0"

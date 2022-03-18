@@ -13,7 +13,7 @@ fn get_default_path() -> Option<String> {
 
 pub struct Config {
     pub path: String,
-    pub file_name: String,
+    pub regex_expr: String,
 }
 
 impl Config {
@@ -21,12 +21,12 @@ impl Config {
         let mut args_iter = args.into_iter();
 
         let pathname;
-        let file_name;
+        let regex_expr;
 
         args_iter.next(); // Advance the first argument to ignore the file call
 
         match args_iter.next() {
-            Some(file) => file_name = file,
+            Some(file) => regex_expr = file,
             None => {
                 eprintln!("File not specified");
                 process::exit(1)
@@ -48,7 +48,7 @@ impl Config {
                         pathname = path;
                     }
                     None => {
-                        eprintln!("{}", "Could not determine root directory for your OS".red());
+                        eprintln!("{}", "Could not determine root directory for your system.".red());
                         process::exit(1);
                     }
                 }
@@ -57,7 +57,7 @@ impl Config {
 
         return Self {
             path: pathname,
-            file_name,
+            regex_expr,
         };
     }
 }

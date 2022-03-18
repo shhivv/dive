@@ -1,7 +1,9 @@
 use crate::core::Config;
 use colored::*;
 use jwalk::WalkDir;
-use std::{ffi, time::Instant};
+use regex::Regex;
+use std::process;
+use std::time::Instant;
 
 pub struct Search {
     pub searched: u64,
@@ -15,7 +17,15 @@ impl Search {
             .follow_links(true)
             .skip_hidden(false);
 
-        let file_name = ffi::OsString::from(config.file_name);
+        let re = Regex::new(config.regex_expr.as_str());
+
+        let expr = match re {
+            Ok(expr) => expr,
+            Err(_) => {
+                eprintln!("{}", "Invalid Regex found.".red());
+                process::exit(1);
+            }
+        };
 
         let mut searched = 0;
         let mut found = 0;
@@ -24,12 +34,11 @@ impl Search {
 
         for entry in walker {
             if let Ok(entry) = entry {
-                searched+=1;
-                if entry.file_name == file_name{
-                    found+=1;
+                searched += 1;
+                if expr.is_match(entry.file_name.to_str().unwrap()) {
+                    found += 1;
                     println!("{}", format!("{}", entry.path().display()).green())
                 }
-
             }
         }
 
@@ -48,7 +57,11 @@ impl Search {
             self.searched.to_string().blue(),
             self.elasped.to_string().green(),
             self.found.to_string().green(),
-            if self.found == 1 { "file or folder" } else { "files and folders" }
+            if self.found == 1 {
+                "file or folder"
+            } else {
+                "files and folders"
+            }
         )
     }
 }
