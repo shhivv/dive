@@ -22,7 +22,7 @@ impl Search {
         let expr = match re {
             Ok(expr) => expr,
             Err(_) => {
-                eprintln!("{}", "Invalid Regex found.".red());
+                eprintln!("{}", "Invalid Regex found".red());
                 process::exit(1);
             }
         };
@@ -44,7 +44,7 @@ impl Search {
 
         let elasped = start.elapsed().as_secs();
 
-        Search {
+        Self {
             searched,
             elasped,
             found,
