@@ -44,7 +44,7 @@ impl Search {
 
         let elasped = start.elapsed().as_secs();
 
-        Search {
+        Self {
             searched,
             elasped,
             found,
