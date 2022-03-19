@@ -2,6 +2,8 @@
 
 🔎 Search millions of files at lightning-fast speeds to find what you are looking for!
 
+### [Download](https://github.com/ffaanngg/dive/releases/download/Stable/dive.exe)
+
 ## Dive in action!
 ![Dive in action!](assets/dive.gif)
 
