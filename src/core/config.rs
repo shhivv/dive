@@ -55,9 +55,9 @@ impl Config {
             }
         }
 
-        return Self {
+        Self {
             path: pathname,
             regex_expr,
-        };
+        }
     }
 }
