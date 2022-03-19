@@ -60,7 +60,7 @@ impl Search {
             if self.found == 1 {
                 "file or folder"
             } else {
-                "files and folders"
+                "files or folders"
             }
         )
     }
