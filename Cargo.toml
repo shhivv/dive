@@ -10,6 +10,7 @@ description = "🔎 Search millions of files at lightning-fast speeds to find wh
 exclude = ["assets/*"]
 
 [[bin]]
+path = "src/main.rs"
 name = "dive"
 
 [dependencies]
