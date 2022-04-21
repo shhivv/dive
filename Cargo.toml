@@ -6,7 +6,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/ffaanngg/dive"
 homepage = "https://github.com/ffaanngg/dive"
-
+exclude = ["assets/*"]
 [dependencies]
 jwalk = "0.6.0"
 colored = "2"
